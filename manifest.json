@@ -1,0 +1,79 @@
+  {
+    "manifest_version": 3,
+    "name": "CSS Sovereign Lite",
+    "version": "1.1.0",
+    "description": "Manifest-routed per-site CSS, with JS only where author CSS must be removed.",
+    "content_scripts": [
+
+
+      {
+        "matches": [
+          "*://kottke.org/*",
+          "*://*.kottke.org/*"
+        ],
+        "css": ["kottke.css"]
+      },
+
+
+
+      {
+        "matches": [
+          "*://hckrnews.com/*",
+          "*://*.hckrnews.com/*"
+        ],
+        "css": ["hckrnews.com.css"]
+      },
+
+
+      {
+        "matches": [
+          "https://chatgpt.com/*"
+        ],
+        "include_globs": [
+          "https://chatgpt.com/*temporary-chat=true*"
+        ],
+        "css": [
+          "chatgpt.com.css"
+        ]
+      },
+
+
+
+
+      {
+        "matches": ["https://hackerweb.app/*"],
+        "css": ["hackerweb.app.css"]
+      },
+
+
+           {
+        "matches": [
+          "*://daringfireball.net/*",
+          "*://*.daringfireball.net/*"
+        ],
+        "js": ["replace-css.js"],
+        "css": ["daringfireball.css"],
+        "run_at": "document_start"
+      },
+
+
+
+
+      
+
+ {
+        "matches": ["*://gothub.projectsegfau.lt/*"],
+            "js": ["replace-css.js"],
+        "css": ["gothub.libre.tw.css"],
+        "run_at": "document_start"
+      }
+
+
+
+
+
+
+
+
+    ]
+  }

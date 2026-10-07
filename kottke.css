@@ -1,0 +1,47 @@
+img,
+video {
+    width: auto !important;
+    height: auto !important;
+    max-width: 200px !important;
+}
+
+img:hover {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: auto !important;
+    height: auto !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
+
+    z-index: 9999;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
+}
+
+#extras-container,
+.boring-title,
+#logo-container {
+    display:none !important;
+}
+
+html,
+body {
+  background: silver !important;
+}
+
+#content-container.grid-item {
+  background: #e2e2e2 !important;
+}
+
+hr {
+  border: none !important;
+  height: 4px !important;
+  background: #ff0000 !important;
+  opacity: 1;
+}
+
+.post-actions {
+       opacity: 0.2;
+}

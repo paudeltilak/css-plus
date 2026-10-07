@@ -1,0 +1,275 @@
+/* =========================================================
+   MAIN PAGE
+   Adds a small horizontal inset around the main content area
+   and forces the overall conversation background to gray.
+   ========================================================= */
+
+main {
+  padding-inline: 12px !important;
+  background-color: #d8d8d8 !important;
+}
+
+
+/* =========================================================
+   HIDE LEGACY / ALTERNATE SIDEBAR ELEMENTS
+   Covers several sidebar implementations/selectors ChatGPT
+   may use depending on the current UI version or state.
+   ========================================================= */
+
+#app-shell-sidebar,
+aside[data-desktop-sidebar],
+[data-octane-sidebar-pane],
+[data-sidebar-scrollport],
+[data-sidebar-shell-version],
+[data-sidebar-header],
+[data-sidebar-login-panel],
+[data-desktop-sidebar-toggle],
+[data-sidebar-return-to-chat],
+[data-sidebar-wordmark],
+nav[aria-label="Sidebar"]  {
+  display: none !important;
+}
+
+
+/* Hide the app-shell left panel itself.
+   This catches another sidebar wrapper not covered above. */
+
+aside.app-shell-left-panel {
+    display: none !important;
+}
+
+
+/* =========================================================
+   CITATIONS
+   Prevent citation cards from expanding too wide.
+   They shrink to their content but stop at 15rem.
+   ========================================================= */
+
+main [data-testid="chatgpt-citation"] {
+  width: fit-content !important;
+  max-width: 15rem !important;
+}
+
+
+
+/* =========================================================
+   TRANSCRIPT / MESSAGE CONTENT WIDTH
+   Removes ChatGPT's normal centered/narrow conversation width
+   and lets transcript content occupy the full available width.
+   ========================================================= */
+
+main [class*="transcriptContent"] {
+  max-width: none !important;
+  width: 100% !important;
+  margin-inline: 0 !important;
+  padding-inline: 0 !important;
+}
+
+
+
+
+/* =========================================================
+   COMPOSER CODE BLOCKS
+   Gives <pre> elements inside the composer a light-gray
+   background and rounded corners.
+   ========================================================= */
+
+[data-chatgpt-composer] pre {
+  background: #e6e6e6 !important;
+  border-radius: 12px !important;
+}
+
+
+/* Initial code-block background override.
+   NOTE: A later rule for the exact same selector changes
+   the background to transparent, so that later declaration
+   wins in the cascade. */
+
+[data-markdown-copy="code-block"] {
+  background: #ededed!important;
+}
+
+
+/* =========================================================
+   MESSAGE CODE BLOCK CONTAINER
+   Removes ChatGPT's normal width constraints, containment,
+   background, and border from the outer code-block wrapper.
+   ========================================================= */
+
+[data-markdown-copy="code-block"] {
+  width: auto !important;
+  max-width: none !important;
+  contain: none !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+
+
+
+
+/* =========================================================
+   INNER CODE SCROLLPORT
+   Makes the actual code area size itself more like a table,
+   rather than automatically stretching across the full row.
+
+   The light background is applied here instead of on the
+   outer code-block wrapper.
+   ========================================================= */
+
+[data-markdown-copy="code-block"] .chatgpt-code-scrollport {
+  display: table !important;
+  width: auto !important;
+
+  /* NOTE: Preserved exactly as written.
+     "10x" is present here rather than "10px". */
+  padding: 10x 14px !important;
+
+  background: #f3f1ec !important;
+}
+
+
+/* =========================================================
+   HIDE CODE-BLOCK CHROME / CONTROLS
+   Removes children ChatGPT marks as excluded from markdown
+   copying, typically UI surrounding the actual code content.
+   ========================================================= */
+
+[data-markdown-copy="code-block"] > [data-markdown-copy="exclude"] {
+  display: none !important;
+}
+
+
+/* Apply the same rounded corners to both the outer code-block
+   wrapper and its inner scrollport. */
+
+[data-markdown-copy="code-block"],
+[data-markdown-copy="code-block"] .chatgpt-code-scrollport {
+  border-radius: 14px !important;
+}
+
+
+
+
+
+
+
+/* =========================================================
+   COMPOSER / THREAD FOOTER BACKGROUND
+   Makes the area behind and around the composer match the
+   same #d8d8d8 background used by <main>.
+   ========================================================= */
+
+
+/* Main white panel behind the composer */
+[data-thread-scroll-footer="true"]
+> [aria-hidden="true"].pointer-events-none.absolute.inset-x-0.bottom-0 {
+  background: #d8d8d8 !important;
+  background-image: none !important;
+}
+
+
+/* Footer itself, in case ChatGPT enables its bg-surface state */
+[data-thread-scroll-footer="true"] {
+  background-color: #d8d8d8 !important;
+}
+
+
+/* Fade immediately above the footer.
+   Replaces ChatGPT's normal surface-colored gradient with a
+   flat background so there is no visible white fade. */
+
+.bg-gradient-to-t.from-surface {
+  background: #d8d8d8 !important;
+  background-image: none !important;
+}
+
+
+
+
+/* side fucking bar */
+/* =========================
+   LEFT SIDEBAR
+   ========================= */
+
+
+/* Hide the current app navigation rail. */
+
+nav[data-app-navigation-rail="true"] {
+  display: none !important;
+}
+
+
+/* Tell the app-shell layout that both the navigation rail
+   and animated left panel consume zero horizontal space.
+
+   This is important because hiding the visible sidebar alone
+   can still leave layout space reserved for it. */
+
+[data-app-shell-frame="true"] {
+  --app-shell-navigation-rail-width: 0px !important;
+  --app-shell-animated-left-panel-width: 0px !important;
+}
+
+
+/* =========================
+   TOP HEADER
+   ========================= */
+
+
+/* Hide the visible app-shell titlebar/header. */
+
+header[data-app-shell-titlebar="true"] {
+  display: none !important;
+}
+
+
+/* Also zero out the shell variables that normally reserve
+   vertical space for the titlebar/header.
+
+   Without these, the header can be hidden while its blank
+   vertical offset remains in the page layout. */
+
+[data-app-shell-frame="true"] {
+  --app-shell-titlebar-height: 0px !important;
+  --app-shell-header-height: 0px !important;
+  --app-shell-page-header-offset: 0px !important;
+  --app-shell-titlebar-top-inset: 0px !important;
+}
+
+
+/* =========================
+   ACTUAL 52px HEADER GAP
+   ========================= */
+
+
+/* Removes the margin on the thread edge divider that can
+   remain after the visible top header has been hidden.
+
+   Both logical and physical-ish margin declarations are
+   included to aggressively neutralize the top spacing. */
+
+[data-app-shell-main-content-layout="default"]
+  > [data-app-shell-thread-edge-divider] {
+  margin-top: 0 !important;
+  margin-block-start: 0 !important;
+}
+
+
+/* No extra thread inset.
+   Resets the custom property used to push conversation
+   content downward from the top of the shell. */
+
+[data-app-shell-main-content-layout="default"] {
+  --thread-content-top-inset: 0px !important;
+}
+
+
+/* Removes any remaining top padding from the action/timeline
+   scroll area and makes sticky thread headers begin at the
+   very top rather than beneath the removed app header. */
+
+[data-app-action-timeline-scroll] {
+  padding-top: 0 !important;
+  --thread-sticky-header-top: 0px !important;
+}

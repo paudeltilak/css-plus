@@ -1,0 +1,25 @@
+.entries a:hover {
+    text-decoration: none !important;
+    background-color: transparent !important;
+}
+
+body {
+    background-color: lightgray !important;
+}
+
+li {
+white-space:nowrap
+}
+
+
+
+
+/* Prevent pointer/hand cursors on links and buttons */
+a,
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  cursor: default !important;
+}
