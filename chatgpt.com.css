@@ -161,25 +161,28 @@ main [class*="transcriptContent"] {
    ========================================================= */
 
 
-/* Main white panel behind the composer */
+/* Footer container */
+[data-thread-scroll-footer="true"] {
+  background-color: #d8d8d8 !important;
+  background-image: none !important;
+}
+
+/* Decorative background layers inside footer */
 [data-thread-scroll-footer="true"]
-> [aria-hidden="true"].pointer-events-none.absolute.inset-x-0.bottom-0 {
+  > [aria-hidden="true"][class*="absolute"],
+
+[data-thread-scroll-footer="true"]
+  > [class*="pointer-events-none"][class*="absolute"] {
   background: #d8d8d8 !important;
   background-image: none !important;
 }
 
+/* Gradient/fade layers */
+[data-thread-scroll-footer="true"]
+  [class*="bg-gradient"],
 
-/* Footer itself, in case ChatGPT enables its bg-surface state */
-[data-thread-scroll-footer="true"] {
-  background-color: #d8d8d8 !important;
-}
-
-
-/* Fade immediately above the footer.
-   Replaces ChatGPT's normal surface-colored gradient with a
-   flat background so there is no visible white fade. */
-
-.bg-gradient-to-t.from-surface {
+[data-thread-scroll-footer="true"]
+  [class*="from-surface"] {
   background: #d8d8d8 !important;
   background-image: none !important;
 }
