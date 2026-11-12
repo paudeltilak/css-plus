@@ -276,3 +276,29 @@ header[data-app-shell-titlebar="true"] {
   padding-top: 0 !important;
   --thread-sticky-header-top: 0px !important;
 }
+
+
+/* =========================================================
+   COMPOSER FOOTER — NEW LAYOUT PATCH
+   Match the outer wrapper and bottom spacer to #d8d8d8.
+   ========================================================= */
+
+
+/* Keep composer 24px above the bottom */
+[data-thread-scroll-footer="true"] {
+  --thread-composer-bottom-inset: 0px !important;
+  translate: 0 -24px !important;
+}
+
+/* Cover the exposed bottom strip */
+main:has([data-thread-scroll-footer="true"])::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 24px !important;
+  background: #d8d8d8 !important;
+  z-index: 21 !important;
+  pointer-events: none !important;
+}
