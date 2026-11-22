@@ -123,7 +123,7 @@ main [class*="transcriptContent"] {
 
   /* NOTE: Preserved exactly as written.
      "10x" is present here rather than "10px". */
-  padding: 10x 14px !important;
+  padding: 10px 14px !important;
 
   background: #f3f1ec !important;
 }
@@ -301,4 +301,13 @@ main:has([data-thread-scroll-footer="true"])::after {
   background: #d8d8d8 !important;
   z-index: 21 !important;
   pointer-events: none !important;
+}
+
+
+/* =========================
+   REMOVE NEW WHITE TOP GRADIENT
+   ========================= */
+
+div.pointer-events-none.absolute.inset-x-0 {
+  background-image: none !important;
 }
